@@ -17,5 +17,9 @@ app.get('/', (req, res) => {
   res.render('index', {hostname: os.hostname()})
 });
 
+app.all('*', (req, res) => {
+  res.render('error')
+});
+
 app.listen(PORT, HOST);
 console.log(`Running on http://${HOST}:${PORT}`);
