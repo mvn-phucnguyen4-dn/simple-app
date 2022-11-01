@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require('express');
+const path = require('path')
 const os = require('os');
 
 // Constants
@@ -9,18 +10,11 @@ const HOST = '0.0.0.0';
 
 // App
 const app = express();
-app.get('/', (req, res) => {
-  res.send(
-    `<body style='background-color:#283E5B'><h1 style='color: orange;text-align:center'>Hello Wave. This website run on ${os.hostname()}</h1>
-    <h2>Someone changed this row</h2>
-    </body>`
-  );
-});
+app.set('view engine', 'ejs')
+app.set('views', path.join(__dirname, 'views'));
 
-app.get('/test', (req, res) => {
-  res.send(
-    `<body style='background-color:#283E5B'><h1 style='color: orange;text-align:center'>Hello Wave. This website run on ${os.hostname()} to TEST</h1></body>`
-  );
+app.get('/', (req, res) => {
+  res.render('index', {hostname: os.hostname()})
 });
 
 app.listen(PORT, HOST);
