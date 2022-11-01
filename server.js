@@ -15,5 +15,11 @@ app.get('/', (req, res) => {
   );
 });
 
+app.get('/test', (req, res) => {
+  res.send(
+    `<body style='background-color:#283E5B'><h1 style='color: orange;text-align:center'>Hello Wave. This website run on ${os.hostname()} to TEST</h1></body>`
+  );
+});
+
 app.listen(PORT, HOST);
 console.log(`Running on http://${HOST}:${PORT}`);
